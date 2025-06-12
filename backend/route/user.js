@@ -1,5 +1,7 @@
 const router = require ("express").Router();
 const User = require ("../Models/user")
+const bcrypt = require ("bcryptjs")
+const jwt = require ("jsonwebtoken")
 
 router.post("/sign-up", async (req,res)=>{
     try{
@@ -31,10 +33,14 @@ router.post("/sign-up", async (req,res)=>{
             .json({message: "Password length should be grater than 6"})
     }
 
+    const hashPass = await bcrypt.hash(password, 10);
+
+
+
     const newUser = new User ({
         username: username,
         email: email,
-        password: password,
+        password: hashPass,
         address: address,
     });
     
@@ -42,6 +48,37 @@ router.post("/sign-up", async (req,res)=>{
     return res.status(500).json({message: "SignUp successfully"});
     
 
+
+    } catch (error) {
+        res.status(500).json({message: "internal server error"})
+        
+    }
+})
+
+
+//sign-in
+
+router.post("/sign-in", async (req,res)=>{
+    try{
+        const {username, password} = req.body ;
+
+        const existingUser = await User.findOne({username});
+        if (!existingUser){
+            res.status(400).json({message: "Invalid credintial"})
+        }
+
+        await bcrypt.compare(password, existingUser.password, (err, data) =>{
+            if (data) {
+                const authClaims = [{name: existingUser.username}, {role: existingUser.role}]
+
+                const token = jwt.sign({authClaims}, "Bookstore123", {expiresIn: "30d"})
+
+                res.status(200).json({id: existingUser._id , role: existingUser.role , token: token})
+
+            } else{
+                res.status(400).json({message: "Invalid credintial"})
+            }
+        } )
 
     } catch (error) {
         res.status(500).json({message: "internal server error"})
