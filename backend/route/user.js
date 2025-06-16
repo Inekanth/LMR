@@ -2,6 +2,7 @@ const router = require ("express").Router();
 const User = require ("../Models/user")
 const bcrypt = require ("bcryptjs")
 const jwt = require ("jsonwebtoken")
+const {authondicateToken} = require ("./userAuth")
 
 router.post("/sign-up", async (req,res)=>{
     try{
@@ -57,7 +58,6 @@ router.post("/sign-up", async (req,res)=>{
 
 
 //sign-in
-
 router.post("/sign-in", async (req,res)=>{
     try{
         const {username, password} = req.body ;
@@ -85,5 +85,33 @@ router.post("/sign-in", async (req,res)=>{
         
     }
 })
+
+
+// user info
+router.get("/get-user-information", authondicateToken, async (req, res) => {
+    try {
+        const {id} = req.headers;
+        const data = await User.findById(id).select ("-password"); //user password is hided
+        res.status(500).json(data)
+        
+    } catch (error) {
+        res.status(500).json({message: "internal server error"})
+    }
+}) 
+
+
+// Address updating
+router.put ("/update-address", authondicateToken, async (req, res) => {
+    try {
+        const {id} = req.headers;
+        const {address} = req.body;
+        await User.findByIdAndUpdate(id, {address: address})
+        res.status(500).json({message: "Address updated successfully"})
+
+    } catch (error) {
+        res.status(500).json({message: "internal server error"})
+    }
+})
+
 
 module.exports = router;
