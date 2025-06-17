@@ -2,7 +2,7 @@ const router = require ("express").Router();
 const User = require ("../Models/user")
 const bcrypt = require ("bcryptjs")
 const jwt = require ("jsonwebtoken")
-const {authondicateToken} = require ("./userAuth")
+const {authendicateToken} = require ("./userAuth")
 
 router.post("/sign-up", async (req,res)=>{
     try{
@@ -88,7 +88,7 @@ router.post("/sign-in", async (req,res)=>{
 
 
 // user info
-router.get("/get-user-information", authondicateToken, async (req, res) => {
+router.get("/get-user-information", authendicateToken, async (req, res) => {
     try {
         const {id} = req.headers;
         const data = await User.findById(id).select ("-password"); //user password is hided
@@ -101,7 +101,7 @@ router.get("/get-user-information", authondicateToken, async (req, res) => {
 
 
 // Address updating
-router.put ("/update-address", authondicateToken, async (req, res) => {
+router.put ("/update-address", authendicateToken, async (req, res) => {
     try {
         const {id} = req.headers;
         const {address} = req.body;

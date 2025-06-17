@@ -2,12 +2,13 @@ const router = require ("express").Router();
 const User = require ("../Models/user")
 const bcrypt = require ("bcryptjs")
 const jwt = require ("jsonwebtoken")
-const book = require ("../Models/book")
-const {authondicateToken} = require ("./userAuth");
+
+
+const {authendicateToken} = require ("./userAuth");
 const book = require("../Models/book");
 
 //books adding
-router.post ("/add-book", authondicateToken, async (req, res)=>{
+router.post ("/add-book", authendicateToken, async (req, res)=>{
     try {
 
         const {id} = req.headers;
@@ -36,7 +37,7 @@ router.post ("/add-book", authondicateToken, async (req, res)=>{
 })
 
 //books update
-router.put ("/update-book", authondicateToken, async (req, res)=>{
+router.put ("/update-book", authendicateToken, async (req, res)=>{
     try {
 
         const {id} = req.headers;
@@ -58,7 +59,7 @@ router.put ("/update-book", authondicateToken, async (req, res)=>{
 })
 
 //books deleting
-router.delete ("/delete-book", authondicateToken, async (req, res)=>{
+router.delete ("/delete-book", authendicateToken, async (req, res)=>{
 
     try {
 
@@ -73,7 +74,7 @@ router.delete ("/delete-book", authondicateToken, async (req, res)=>{
 })
 
 //all books showing
-router.get ("/get-all-book", authondicateToken, async (req, res)=>{
+router.get ("/get-all-book", authendicateToken, async (req, res)=>{
 
     try {
 
@@ -87,7 +88,7 @@ router.get ("/get-all-book", authondicateToken, async (req, res)=>{
 })
 
 //showing recently adding books
-router.get ("/get-recent-book", authondicateToken, async (req, res)=>{
+router.get ("/get-recent-book", authendicateToken, async (req, res)=>{
 
     try {
 
@@ -101,7 +102,7 @@ router.get ("/get-recent-book", authondicateToken, async (req, res)=>{
 })
 
 //books searching
-router.get ("/get-book-by-id/:id", authondicateToken, async (req, res)=>{
+router.get ("/get-book-by-id/:id", authendicateToken, async (req, res)=>{
 
     try {
         const { id } = req.params;

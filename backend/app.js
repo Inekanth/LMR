@@ -3,8 +3,13 @@ const app = express();
 require('dotenv').config();
 require("./connections/conn");
 
-const book = require ("./route/book")
+
 const user = require ("./route/user")
+const books = require ("./route/books")
+const favorite = require ("./route/favorite")
+const cart = require ("./route/cart")
+
+app.use(express.json());
 
 /*** 
 app.get('/', (req, res) => {
@@ -15,7 +20,9 @@ app.get('/', (req, res) => {
 
 
 app.use("/ap1/v1", user);
-app.use("/ap1/v1", book);
+app.use("/ap1/v1", books);
+app.use("/ap1/v1", favorite);
+app.use("/ap1/v1", cart);
 
 app.listen(process.env.PORT, () => {
   console.log(`Server is running on http://localhost:${process.env.PORT}`);

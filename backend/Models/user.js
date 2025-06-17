@@ -34,7 +34,7 @@ const order = new mongoose.Schema ({
         enum: ["user", "admin"],
     },
 
-    favourites: [{
+    favorites: [{
         type: mongoose.Types.ObjectId,
         ref: 'books'
     }],
