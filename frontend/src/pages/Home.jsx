@@ -1,9 +1,12 @@
 import React from 'react'
+import Hero from '../components/home/hero'
 
-const home = () => {
+const Home = () => {
   return (
-    <div>home</div>
+    <div className= "bg-zinc-600 text-white" >
+      <Hero/>
+    </div>
   )
 }
 
-export default home
+export default Home
