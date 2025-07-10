@@ -1,10 +1,10 @@
 const router = require("express").Router();
 const User = require ("../Models/user");
-const {authenticateToken} = require ("./userAuth");
+const {authendicateToken} = require ("./userAuth");
 
 
 //add to favorites
-router.put("/add-to-favorite-book", authenticateToken, async (req, res) => {
+router.put("/add-to-favorite-book", authendicateToken, async (req, res) => {
     try {
 
         const { bookid, id } = req.headers;
@@ -25,7 +25,7 @@ router.put("/add-to-favorite-book", authenticateToken, async (req, res) => {
 })
 
 //remove from favorites
-router.put("/remove-book-from-favorite", authenticateToken, async (req, res) => {
+router.put("/remove-book-from-favorite", authendicateToken, async (req, res) => {
     try {
         const { bookid, id } = req.headers;
         const userData = await User.findById(id);
@@ -42,7 +42,7 @@ router.put("/remove-book-from-favorite", authenticateToken, async (req, res) => 
 })
 
 //get the favorites
-router.get("/get-to-favorite-book", authenticateToken, async (req, res) => {
+router.get("/get-to-favorite-book", authendicateToken, async (req, res) => {
     try {
 
         const { id } = req.headers;

@@ -1,9 +1,9 @@
 const router = require ("express").Router();
 const User = require ("../Models/user");
-const {authenticateToken} = require ("./userAuth");
+const {authendicateToken} = require ("./userAuth");
 
 
-router.put ("/add-to-card", authenticateToken, async (req, res)=> {
+router.put ("/add-to-card", authendicateToken, async (req, res)=> {
 
     try {
         const { bookid, id } = req.headers;
@@ -26,7 +26,7 @@ router.put ("/add-to-card", authenticateToken, async (req, res)=> {
 })
 
 
-router.put ("/remove-from-cart/:bookid", authenticateToken, async (req, res) => {
+router.put ("/remove-from-cart/:bookid", authendicateToken, async (req, res) => {
     try {
         const { bookid } = req.params;
         const { id } = req.headers;
@@ -44,7 +44,7 @@ router.put ("/remove-from-cart/:bookid", authenticateToken, async (req, res) => 
 })
 
 
-router.get ("/get-to-favorite-book", authenticateToken, async (req, res) => {
+router.get ("/get-to-favorite-book", authendicateToken, async (req, res) => {
     try {
 
         const { id } = req.headers;
