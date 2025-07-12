@@ -17,9 +17,9 @@ const BookCart = () => {
     
 
   return (
-    <div>
+    <Link to = {`/view-book-detaile ${data._id}`}>
         
-    </div>
+    </Link>
   )
 }
 
