@@ -16,14 +16,12 @@ export const RecentlyAdded = () => {
 
   }, []);
   
-
-
-  
   return (
     <div className='mt-0 px-4'>
+
        <h4 className='text-yellow-200 text-2xl font-semibold text-center'>Recently Added Books...!</h4>
-       <div className='my-4 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-4'>
-        (Data && Data.map((items, i)=> <div key={i}> <BookCart/> </div>))
+       <div className='my-8 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-4'>
+          {Data && Data.map((items, i)=> <div key={i}> <BookCart data = {items}/> {' '}</div>)}
        </div>
     </div>
   )
