@@ -1,9 +1,9 @@
 import React from 'react'
-import { Routes, Route } from 'react-router-dom'
-import { BrowserRouter as Router } from 'react-router-dom'
+  import { Routes, Route } from 'react-router-dom'
+  import { BrowserRouter as Router } from 'react-router-dom'
 
 import Navbare from './components/Navbare/Navbare'
-import Home from './pages/Home'
+import Home from './pages/home'
 import About from './pages/About'
 import Allbooks from './pages/Allbooks'
 import SignUp from './pages/SignUp'

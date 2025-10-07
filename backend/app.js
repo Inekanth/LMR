@@ -3,6 +3,8 @@ const app = express();
 require('dotenv').config();
 require("./connections/conn");
 
+const cors = require('cors')
+
 
 const user = require ("./route/user")
 const books = require ("./route/books")

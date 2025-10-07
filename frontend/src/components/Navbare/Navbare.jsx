@@ -25,8 +25,7 @@ const Navbare = () => {
     title: "Profile",
     link: "/profile",
   },
-
-  ]
+]
 
   const [MobileNave, setMobileNave] = useState("hidden");
 
