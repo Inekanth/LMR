@@ -12,6 +12,8 @@ const favorite = require ("./route/favorite")
 const cart = require ("./route/cart")
 const order = require ("./route/order")
 
+
+app.use (cors());
 app.use(express.json());
 
 /*** 
